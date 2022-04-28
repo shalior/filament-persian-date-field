@@ -21,6 +21,8 @@ php artisan vendor:publish --tag="filament-persian-date-field-views"
 
 ## Usage
 
+You'll use this component with [Filament forms](https://filamentphp.com/docs/2.x/forms/installation). 
+
 It syncs the related gregorian date (as string: `Y-m-d`) with your LiveWire component.
 Use the field like any other filament form fields:
 
