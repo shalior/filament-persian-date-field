@@ -25,6 +25,9 @@
         x-init="
         $('#{{\Illuminate\Support\Str::replace('.' , '\\\.' , $getId() )}}_view').pDatepicker({
         autoClose: true,
+        responsive: true,
+        minDate:{{ $getMaxDate() ? strtotime($getMaxDate()) * 1000 : 'null' }},
+        maxDate:{{ $getMinDate() ? strtotime($getMinDate()) * 1000 : 'null' }},
         initialValue: {{$getDefaultState() ? 'true' : 'false'}},
         viewMode: 'day',
         altFormat: `YYYY/MM/DD`,
