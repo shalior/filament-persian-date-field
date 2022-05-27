@@ -13,10 +13,10 @@ You can install the package via composer:
 composer require shalior/filament-persian-date-field
 ```
 
-You can publish the views using
+You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="filament-persian-date-field-views"
+php artisan vendor:publish --tag="filament-persian-date-field-config"
 ```
 
 ## Usage
