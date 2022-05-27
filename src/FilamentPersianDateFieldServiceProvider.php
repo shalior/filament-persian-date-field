@@ -4,7 +4,6 @@ namespace Shalior\FilamentPersianDateField;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Shalior\FilamentPersianDateField\Commands\FilamentPersianDateFieldCommand;
 
 class FilamentPersianDateFieldServiceProvider extends PackageServiceProvider
 {
@@ -17,6 +16,7 @@ class FilamentPersianDateFieldServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('filament-persian-date-field')
+            ->hasConfigFile()
             ->hasViews();
     }
 }
