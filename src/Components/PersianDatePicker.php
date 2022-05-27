@@ -42,12 +42,12 @@ class PersianDatePicker extends Field
 
     public function getMaxDate(): ?string
     {
-        return $this->evaluate($this->maxDate);
+        return (string) $this->evaluate($this->maxDate);
     }
 
     public function getMinDate(): ?string
     {
-        return $this->evaluate($this->minDate);
+        return (string) $this->evaluate($this->minDate);
     }
 
 
