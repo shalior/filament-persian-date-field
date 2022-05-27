@@ -19,7 +19,7 @@
         wire:ignore
         wire:model="{{ $getStatePath() }}"
         x-init="
-        $('#{{$getId()}}_view').pDatepicker({
+        $('#{{\Illuminate\Support\Str::replace('.' , '\\\.' , $getId() )}}_view').pDatepicker({
         autoClose: true,
         initialValue: {{$getDefaultState() ? 'true' : 'false'}},
         viewMode: 'day',
