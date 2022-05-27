@@ -21,7 +21,7 @@
 >
     <div
         wire:ignore
-        wire:model="{{ $getStatePath() }}"
+        wire:model.defer="{{ $getStatePath() }}"
         x-init="
         $('#{{\Illuminate\Support\Str::replace('.' , '\\\.' , $getId() )}}_view').pDatepicker({
         autoClose: true,
