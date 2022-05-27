@@ -1,8 +1,12 @@
 @once
     @push('scripts')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="//unpkg.com/persian-date@latest/dist/persian-date.min.js"></script>
-        <script src="//unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script>
+        @if(config('filament-persian-date-field.cdn.jQuery'))
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        @endif
+        @if(config('filament-persian-date-field.cdn.persian-datepicker'))
+            <script src="//unpkg.com/persian-date@latest/dist/persian-date.min.js"></script>
+            <script src="//unpkg.com/persian-datepicker@latest/dist/js/persian-datepicker.min.js"></script>
+        @endif
     @endpush
 @endonce
 
