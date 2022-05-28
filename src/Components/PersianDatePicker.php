@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Shalior\FilamentPersianDateField\Components;
@@ -22,7 +23,7 @@ class PersianDatePicker extends Field
 
         $this->rule(static function (PersianDatePicker $component) use ($rule) {
             return "{$rule}:{$component->getMaxDate()}";
-        }, static fn(PersianDatePicker $component): bool => (bool) $component->getMaxDate());
+        }, static fn (PersianDatePicker $component): bool => (bool) $component->getMaxDate());
 
         return $this;
     }
@@ -49,8 +50,4 @@ class PersianDatePicker extends Field
     {
         return (string) $this->evaluate($this->minDate);
     }
-
-
 }
-
-
