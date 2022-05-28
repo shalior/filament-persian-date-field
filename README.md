@@ -32,6 +32,8 @@ Use the field like any other filament form fields:
         return [
             \Shalior\FilamentPersianDateField\Components\PersianDatePicker::make('persianDate')
             ->id('persian-date')
+            ->maxDate(now()->format('Y-m-d'))
+            ->minDate(now()->subWeek()->format('Y-m-d'))
             ->default('2022-04-28'),
         ];
     }
