@@ -34,6 +34,7 @@ Use the field like any other filament form fields:
             ->id('persian-date')
             ->maxDate(now()->format('Y-m-d'))
             ->minDate(now()->subWeek()->format('Y-m-d'))
+            ->withoutTime()
             ->default('2022-04-28'),
         ];
     }
