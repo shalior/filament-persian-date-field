@@ -94,7 +94,7 @@ class PersianDatePicker extends Field
         return (string) $this->evaluate($this->minDate);
     }
 
-    public function viewMode( string | Closure $viewMode = 'day'): static
+    public function viewMode(string | Closure $viewMode = 'day'): static
     {
         $this->viewMode = $viewMode;
 
@@ -169,7 +169,8 @@ class PersianDatePicker extends Field
         return $jsFormat;
     }
 
-    public function getViewMode(  ) {
+    public function getViewMode()
+    {
         $viewMode = $this->evaluate($this->viewMode);
 
         if (! in_array($viewMode, ['day', 'month', 'year'])) {
@@ -178,5 +179,4 @@ class PersianDatePicker extends Field
 
         return $viewMode;
     }
-
 }
