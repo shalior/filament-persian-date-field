@@ -22,6 +22,7 @@ class PersianDatePicker extends Field
     protected string | Closure | null $format = null;
 
     protected bool | Closure $isWithoutDate = false;
+    protected string | Closure $viewMode = 'day';
 
     protected function setUp(): void
     {
@@ -93,6 +94,13 @@ class PersianDatePicker extends Field
         return (string) $this->evaluate($this->minDate);
     }
 
+    public function viewMode( string | Closure $viewMode = 'day'): static
+    {
+        $this->viewMode = $viewMode;
+
+        return $this;
+    }
+
     public function withoutSeconds(bool | Closure $condition = true): static
     {
         $this->isWithoutSeconds = $condition;
@@ -159,6 +167,16 @@ class PersianDatePicker extends Field
         $jsFormat = str_replace('-', '/', $jsFormat);
 
         return $jsFormat;
+    }
+
+    public function getViewMode(  ) {
+        $viewMode = $this->evaluate($this->viewMode);
+
+        if (! in_array($viewMode, ['day', 'month', 'year'])) {
+            $viewMode = 'day';
+        }
+
+        return $viewMode;
     }
 
 }

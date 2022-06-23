@@ -35,6 +35,7 @@ Use the field like any other filament form fields:
             ->maxDate(now()->format('Y-m-d'))
             ->minDate(now()->subWeek()->format('Y-m-d'))
             ->withoutTime()
+            ->viewMode('month') // accepts 'day', 'month', 'year'
             ->default('2022-04-28'),
         ];
     }

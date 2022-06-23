@@ -29,10 +29,14 @@
         maxDate:{{ $getMaxDate() ? strtotime($getMaxDate()) * 1000 : 'null' }},
         minDate:{{ $getMinDate() ? strtotime($getMinDate()) * 1000 : 'null' }},
         initialValue: {{$getState() ? 'true' : 'false'}},
-        viewMode: 'day',
+        viewMode: '{{$getViewMode()}}',
         format: `{{$getJsFormat()}}`,
         timePicker: {
             enabled: {{$hasTime() ? 'true' : 'false'}},
+                second: {
+                    enabled: {{$hasSeconds() ? 'true' : 'false'}},
+                    step: null
+                },
         },
         altField: '#{{$getId()}}',
         altFieldFormatter: function (unix) {
