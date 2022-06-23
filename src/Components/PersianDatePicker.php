@@ -7,6 +7,7 @@ namespace Shalior\FilamentPersianDateField\Components;
 use Carbon\CarbonInterface;
 use Closure;
 use Filament\Forms\Components\Field;
+use Illuminate\Support\Carbon;
 
 class PersianDatePicker extends Field
 {
@@ -14,6 +15,47 @@ class PersianDatePicker extends Field
 
     protected CarbonInterface|string|Closure|null $maxDate = null;
     protected CarbonInterface|string|Closure|null $minDate = null;
+
+    protected bool | Closure $isWithoutTime = false;
+    protected bool | Closure $isWithoutSeconds = false;
+
+    protected string | Closure | null $format = null;
+
+    protected bool | Closure $isWithoutDate = false;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->afterStateHydrated(static function (PersianDatePicker $component, $state): void {
+            if (! $state instanceof CarbonInterface) {
+                $state = Carbon::parse($state);
+            }
+
+            $state->setTimezone(config('app.timezone'));
+            $state = $state->format($component->getFormat());
+
+            $component->state($state);
+        });
+
+        $this->dehydrateStateUsing(static function (PersianDatePicker $component, $state) {
+            if (blank($state)) {
+                return null;
+            }
+
+            if (! $state instanceof CarbonInterface) {
+                $state = Carbon::parse($state);
+            }
+
+            $state->setTimezone(config('app.timezone'));
+
+            return $state->format($component->getFormat());
+        });
+
+        $this->rule(
+            'date',
+        );
+    }
 
     public function maxDate(CarbonInterface|string|Closure|null $date, $acceptEqual = true): static
     {
@@ -50,4 +92,73 @@ class PersianDatePicker extends Field
     {
         return (string) $this->evaluate($this->minDate);
     }
+
+    public function withoutSeconds(bool | Closure $condition = true): static
+    {
+        $this->isWithoutSeconds = $condition;
+
+        return $this;
+    }
+
+    public function withoutTime(bool | Closure $condition = true): static
+    {
+        $this->isWithoutTime = $condition;
+
+        return $this;
+    }
+
+    public function hasSeconds(): bool
+    {
+        return ! $this->isWithoutSeconds;
+    }
+
+    public function hasTime(): bool
+    {
+        return ! $this->isWithoutTime;
+    }
+
+    public function format(string | Closure | null $format): static
+    {
+        $this->format = $format;
+
+        return $this;
+    }
+
+    public function getFormat(): string
+    {
+        $format = $this->evaluate($this->format);
+
+        if ($format) {
+            return $format;
+        }
+
+        $format = 'Y-m-d';
+
+        if (! $this->hasTime()) {
+            return $format;
+        }
+
+        $format = "{$format} H:i";
+
+        if (! $this->hasSeconds()) {
+            return $format;
+        }
+
+        return "{$format}:s";
+    }
+
+    public function getJsFormat(): ?string
+    {
+        $phpFormat = $this->getFormat();
+        $jsFormat = str_replace('Y', 'YYYY', $phpFormat);
+        $jsFormat = str_replace('m', 'MM', $jsFormat);
+        $jsFormat = str_replace('d', 'DD', $jsFormat);
+        $jsFormat = str_replace('H', 'HH', $jsFormat);
+        $jsFormat = str_replace('i', 'mm', $jsFormat);
+        $jsFormat = str_replace('s', 'ss', $jsFormat);
+        $jsFormat = str_replace('-', '/', $jsFormat);
+
+        return $jsFormat;
+    }
+
 }

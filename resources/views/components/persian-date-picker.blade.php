@@ -28,20 +28,17 @@
         responsive: true,
         maxDate:{{ $getMaxDate() ? strtotime($getMaxDate()) * 1000 : 'null' }},
         minDate:{{ $getMinDate() ? strtotime($getMinDate()) * 1000 : 'null' }},
-        initialValue: {{$getDefaultState() ? 'true' : 'false'}},
+        initialValue: {{$getState() ? 'true' : 'false'}},
         viewMode: 'day',
-        altFormat: `YYYY/MM/DD`,
-        format: `YYYY/MM/DD`,
+        format: `{{$getJsFormat()}}`,
+        timePicker: {
+            enabled: {{$hasTime() ? 'true' : 'false'}},
+        },
         altField: '#{{$getId()}}',
         altFieldFormatter: function (unix) {
             let date = new Date(unix);
-            const formatedDate = date.getFullYear().toString() + '-'
-            + ((date.getMonth()+1).toString().length === 1 ? '0' + (date.getMonth()+1).toString() : (date.getMonth()+1).toString() )
-            + '-'
-            + (date.getDate().toString().length === 1 ? '0' + date.getDate().toString() : date.getDate().toString());
-
-            $dispatch('input' , formatedDate); // Y-m-d
-            return formatedDate;
+            $dispatch('input' , date.toISOString());
+            return date.toISOString();
         }
        });
         "
@@ -58,7 +55,7 @@
             id="{{$getId()}}_view"
             autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
             class="text-left w-full h-full p-0 placeholder-gray-400 border-0 focus:placeholder-gray-500 focus:ring-0 focus:outline-none"
-            value="{{$getDefaultState()}}" type="text"/>
+            value="{{$getState()}}" type="text"/>
 
         <input id="{{$getId()}}" class="block mt-1 w-full hidden" type="hidden" name="{{$getId()}}"/>
 
