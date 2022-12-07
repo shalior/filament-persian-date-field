@@ -24,28 +24,28 @@
         x-cloak
         x-init="
         $('#{{\Illuminate\Support\Str::replace('.' , '\\\.' , $getId() )}}_view').pDatepicker({
-        autoClose: true,
-        responsive: true,
-        maxDate:{{ $getMaxDate() ? strtotime($getMaxDate()) * 1000 : 'null' }},
-        minDate:{{ $getMinDate() ? strtotime($getMinDate()) * 1000 : 'null' }},
-        initialValue: {{$getState() ? 'true' : 'false'}},
-        viewMode: '{{$getViewMode()}}',
-        format: `{{$getJsFormat()}}`,
-        timePicker: {
-            enabled: {{$hasTime() ? 'true' : 'false'}},
-                second: {
-                    enabled: {{$hasSeconds() ? 'true' : 'false'}},
-                    step: null
-                },
-        },
-        altField: '#{{$getId()}}',
-        altFieldFormatter: function (unix) {
-            let date = new Date(unix);
-            $dispatch('input' , date.toISOString());
-            return date.toISOString();
-        }
-       });
-        "
+            autoClose: true,
+            responsive: true,
+            maxDate:{{ $getMaxDate() ? strtotime($getMaxDate()) * 1000 : 'null' }},
+            minDate:{{ $getMinDate() ? strtotime($getMinDate()) * 1000 : 'null' }},
+            initialValue: {{$getState() ? 'true' : 'false'}},
+            viewMode: '{{$getViewMode()}}',
+            format: '{{$getJsFormat()}}',
+            timePicker: {
+                enabled: {{$hasTime() ? 'true' : 'false'}},
+                    second: {
+                        enabled: {{$hasSeconds() ? 'true' : 'false'}},
+                        step: null
+                    },
+            },
+            altField: '#{{$getId()}}',
+            altFieldFormatter: function (unix) {
+                let date = new Date(unix);
+                $dispatch('input' , date.toISOString());
+                $wire.set('{{ $getStatePath() }}' , date.toISOString());
+                return date.toISOString();
+            },
+        });"
         {{ $attributes->class([
            'bg-white relative w-full border pl-3 pr-10 py-2 text-left cursor-default rounded-lg shadow-sm focus-within:border-primary-600 focus-within:ring-1 focus-within:ring-inset focus-within:ring-primary-600',
            'border-gray-300' => ! $errors->has($getStatePath()),
