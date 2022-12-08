@@ -29,6 +29,10 @@ class PersianDatePicker extends Field
         parent::setUp();
 
         $this->afterStateHydrated(static function (PersianDatePicker $component, $state): void {
+            if (blank($state)) {
+                return;
+            }
+
             if (! $state instanceof CarbonInterface) {
                 $state = Carbon::parse($state);
             }
