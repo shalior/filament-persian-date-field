@@ -19,6 +19,7 @@
         "php": "^8.0",
         "spatie/laravel-package-tools": "^1.9.2",
         "filament/forms": "^2.0",
+        "filament/tables": "^2.0",
         "illuminate/contracts": "^8.6|^9.0|^10.0"
     },
     "require-dev": {
@@ -43,7 +44,10 @@
         "test-coverage": "vendor/bin/pest --coverage"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {

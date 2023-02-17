@@ -3,6 +3,7 @@
 namespace Shalior\FilamentPersianDateField\Columns;
 
 use Filament\Tables\Columns\Column;
+use Illuminate\Support\Carbon;
 
 class PersianDateColumn extends Column
 {
@@ -31,7 +32,7 @@ class PersianDateColumn extends Column
         return $this;
     }
 
-    public function getTimezone()
+    public function getTimezone(): string
     {
         return $this->timezone;
     }
