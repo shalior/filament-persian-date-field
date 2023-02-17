@@ -41,6 +41,21 @@ Use the field like any other filament form fields:
     }
 ```
 
+## Persian date table column
+
+You can use this field as a column in your table:
+
+The column assumes you've installed [verta](https://github.com/hekmatinasser/verta) or [morilog/jalali](https://github.com/morilog/jalali)
+if neither of them is installed, it will use Carbon's `translatedFormat()`
+
+```php
+    Shalior\FilamentPersianDateField\Columns::make('created_at')
+        ->translateLabel()
+        ->format('Y/m/d') // default is 'H:i:s Y/m/d'
+        ->timeZone('Asia/Tehran'), // default is 'Asia/Tehran'
+        // renders as: ۱۳۹۹/۰۸/۰۱ in the table
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
