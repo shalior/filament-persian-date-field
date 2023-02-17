@@ -9,7 +9,7 @@ class PersianDateColumn extends Column
     protected string $view = 'filament-persian-date-field::columns.persian-date-column';
 
     protected string $format = 'H:i:s Y/m/d';
-    
+
     protected string $timezone = 'Asia/Tehran';
 
     public function format(string $format): static
@@ -60,5 +60,4 @@ class PersianDateColumn extends Column
             ->setTimezone($this->getTimezone())
             ->translatedFormat($this->getFormat());
     }
-
 }
