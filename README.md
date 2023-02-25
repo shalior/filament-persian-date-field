@@ -1,4 +1,4 @@
-# A FilamentPhp form field to pick persian dates
+# A FilamentPhp form field to pick persian (jalali) dates
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/shalior/filament-persian-date-field.svg?style=flat-square)](https://packagist.org/packages/shalior/filament-persian-date-field)
 [![Total Downloads](https://img.shields.io/packagist/dt/shalior/filament-persian-date-field.svg?style=flat-square)](https://packagist.org/packages/shalior/filament-persian-date-field)
