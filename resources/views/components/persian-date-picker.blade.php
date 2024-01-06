@@ -9,7 +9,7 @@
     @endif
 @endonce
 
-<x-forms::field-wrapper
+<x-filament-forms::field-wrapper
     :id="$getId()"
     :label="$getLabel()"
     :label-sr-only="$isLabelHidden()"
@@ -58,12 +58,13 @@
             readonly
             id="{{$getId()}}_view"
             autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-            class="text-left w-full h-full p-0 placeholder-gray-400 border-0 focus:placeholder-gray-500 focus:ring-0 focus:outline-none"
+            class="text-left dark:text-gray-700 pl-2 p-0 w-full h-full p-0 placeholder-gray-400 border-0 focus:placeholder-gray-500 focus:ring-0 focus:outline-none"
+            style="border: 0; outline: none; padding-left: .5rem"
             value="{{$getState()}}" type="text"/>
 
         <input id="{{$getId()}}" class="block mt-1 w-full hidden" type="hidden" name="{{$getId()}}"/>
 
-        <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+        <span class="absolute inset-y-0 right-0 flex items-center p-2 pointer-events-none">
                 <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -71,4 +72,4 @@
                 </svg>
             </span>
     </div>
-</x-forms::field-wrapper>
+</x-filament-forms::field-wrapper>
