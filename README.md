@@ -13,6 +13,8 @@ You can install the package via composer:
 composer require shalior/filament-persian-date-field
 ```
 
+**_To use with filament v2 use version ^1_**
+
 You can publish the config file with:
 
 ```bash
